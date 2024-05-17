@@ -1,0 +1,1086 @@
+{
+  "compatibilityLevel": 1604,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.130.7303.4 (Main)"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DatabaseQuery\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"WebModelingEdit\"]"
+      }
+    ],
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "annotations": [
+          {
+            "name": "PBI_IncludeFutureArtifacts",
+            "value": "False"
+          }
+        ],
+        "expression": [
+          "let",
+          "    database = Sql.Database(\"UPEFAD73BKHEBGEHSFIY3GNMYM-5MKCH66MMRXU3EFFKGG2A53HWA.datawarehouse.fabric.microsoft.com\", \"eaa61129-f8e4-4836-9b63-f16d8630975e\")",
+          "in",
+          "    database"
+        ],
+        "kind": "m",
+        "lineageTag": "a2e3bede-9a7a-439b-a117-c82809dd241b"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "b9e751b3-59e1-3f5a-a14d-e5c3ec40a49c",
+        "fromColumn": "BusinessDate",
+        "fromTable": "dimdate",
+        "toColumn": "Order_Date",
+        "toTable": "fact_sales"
+      },
+      {
+        "name": "2ca469bb-82f5-9c0b-c140-f865f1cb1498",
+        "fromColumn": "OrderPriority_ID",
+        "fromTable": "orderpriority",
+        "toColumn": "OrderPriority_ID",
+        "toTable": "fact_sales"
+      },
+      {
+        "name": "d509aa45-0a21-1c0f-85e9-74c7a7172a46",
+        "fromColumn": "Customer_ID",
+        "fromTable": "customer",
+        "toColumn": "Customer_ID",
+        "toTable": "fact_sales"
+      },
+      {
+        "name": "ac6574a9-297d-8a2a-7f10-f85213e78259",
+        "fromColumn": "Order_ID",
+        "fromTable": "orderreturn",
+        "toColumn": "Order_ID",
+        "toTable": "fact_sales"
+      },
+      {
+        "name": "0ca2909f-bafe-7d3f-737e-c0f071b41c81",
+        "fromColumn": "Product_ID",
+        "fromTable": "product",
+        "toColumn": "Product_ID",
+        "toTable": "fact_sales"
+      },
+      {
+        "name": "4974e94d-8861-86c4-deb2-bc52719f79e9",
+        "fromColumn": "ShipMode_ID",
+        "fromTable": "fact_sales",
+        "toColumn": "ShipMode_ID",
+        "toTable": "shipmode"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "shipmode",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "ShipMode_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "43dd0cf7-dd83-4806-a26d-a0b7e7029b57",
+            "sourceColumn": "ShipMode_ID",
+            "sourceLineageTag": "ShipMode_ID",
+            "sourceProviderType": "int",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Ship_Mode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3e12af7a-d185-4b5a-a074-02706b02363b",
+            "sourceColumn": "Ship_Mode",
+            "sourceLineageTag": "Ship_Mode",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "03a2e0de-35e9-4266-af4d-4e107f2233b5",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "543056c8-2429-4d41-8e98-665912cc3824",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "086e459a-72e1-4896-8bf3-bae9f83cca5c",
+        "partitions": [
+          {
+            "name": "shipmode",
+            "mode": "directLake",
+            "source": {
+              "entityName": "shipmode",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[shipmode]"
+      },
+      {
+        "name": "orderreturn",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Order_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4cc1b55d-d512-43fc-8853-132ce61ea2f4",
+            "sourceColumn": "Order_ID",
+            "sourceLineageTag": "Order_ID",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReturnFlag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "419e38c8-bdd4-407f-bedb-0bd2fdd36ac2",
+            "sourceColumn": "ReturnFlag",
+            "sourceLineageTag": "ReturnFlag",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Order_Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a6a4f0d2-e2bd-45c0-a318-a2f34914290f",
+            "sourceColumn": "Order_Year",
+            "sourceLineageTag": "Order_Year",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Order_Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0c29fbe3-4fdb-4895-acea-effe9083e635",
+            "sourceColumn": "Order_Month",
+            "sourceLineageTag": "Order_Month",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "345a4eee-bd28-4603-94ae-5b55bb22a8c2",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "a4f6ae96-29e3-4335-aec4-0a0085fcf462",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "11351515-55bb-4a44-8d2f-a2630d0a16d5",
+        "partitions": [
+          {
+            "name": "orderreturn",
+            "mode": "directLake",
+            "source": {
+              "entityName": "orderreturn",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[orderreturn]"
+      },
+      {
+        "name": "customer",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Customer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1fbc92b8-b3bd-48d1-ac7d-424383f582a9",
+            "sourceColumn": "Customer_ID",
+            "sourceLineageTag": "Customer_ID",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Customer_Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e26948c8-8f57-4e60-a521-91cbd806c23a",
+            "sourceColumn": "Customer_Name",
+            "sourceLineageTag": "Customer_Name",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d160faac-6e84-4bc9-8001-0f57ee3ddf66",
+            "sourceColumn": "Segment",
+            "sourceLineageTag": "Segment",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "578b19a4-d8df-47af-8baa-ff8dc85e628c",
+            "sourceColumn": "City",
+            "sourceLineageTag": "City",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "State",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e80c90bc-2935-4e31-b055-d6d976b023a5",
+            "sourceColumn": "State",
+            "sourceLineageTag": "State",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2a13b90c-e6e6-4079-9e62-6bf0bdf24e16",
+            "sourceColumn": "Country",
+            "sourceLineageTag": "Country",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "44f754ff-6825-4f6d-8726-e8d1c97780f1",
+            "sourceColumn": "Region",
+            "sourceLineageTag": "Region",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "33f2561a-e5bb-46ba-8b6f-282b8663d89c",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "b75657ed-80d7-4089-b11b-2a2b7e2dfa92",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "17ee0b74-284f-43d1-83c0-fa9107e0273e",
+        "partitions": [
+          {
+            "name": "customer",
+            "mode": "directLake",
+            "source": {
+              "entityName": "customer",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[customer]"
+      },
+      {
+        "name": "product",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "49181298-ddb6-4898-8bfa-c4b86202a084",
+            "sourceColumn": "Product_ID",
+            "sourceLineageTag": "Product_ID",
+            "sourceProviderType": "bigint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product_Category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1d6855f4-1392-43b4-8ddf-55716da5a491",
+            "sourceColumn": "Product_Category",
+            "sourceLineageTag": "Product_Category",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9c69f4b8-1663-4150-92b4-3eee6cbe5f5e",
+            "sourceColumn": "Product",
+            "sourceLineageTag": "Product",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "a0f8bd66-793a-4885-9257-6628b88a4757",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "a39c4463-ee3f-4dc3-bd0e-9c995ac481c8",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "41d52185-d883-4e94-9cb9-9374cc41c5fa",
+        "partitions": [
+          {
+            "name": "product",
+            "mode": "directLake",
+            "source": {
+              "entityName": "product",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[product]"
+      },
+      {
+        "name": "dimdate",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "BusinessDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "0200fea7-9783-40dc-8dca-853adbfaffd9",
+            "sourceColumn": "BusinessDate",
+            "sourceLineageTag": "BusinessDate",
+            "sourceProviderType": "date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Business_Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5238d77a-b644-4a72-ad0f-45d93181f114",
+            "sourceColumn": "Business_Year",
+            "sourceLineageTag": "Business_Year",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Business_Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cbda016f-9395-445c-a7af-4af1a56294b5",
+            "sourceColumn": "Business_Month",
+            "sourceLineageTag": "Business_Month",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Business_Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d24cebe6-f5cf-4ce2-888d-6f9cf737ebc0",
+            "sourceColumn": "Business_Quarter",
+            "sourceLineageTag": "Business_Quarter",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Business_Week",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "068be351-aecc-4cc6-8afc-4ba023033949",
+            "sourceColumn": "Business_Week",
+            "sourceLineageTag": "Business_Week",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "fe4b1e14-475a-44bd-993e-f3ebf3f8e4bc",
+        "partitions": [
+          {
+            "name": "dimdate",
+            "mode": "directLake",
+            "source": {
+              "entityName": "dimdate",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[dimdate]"
+      },
+      {
+        "name": "orderpriority",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "OrderPriority_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "85ec2455-32c5-4849-90b6-dc0a0eb6abf3",
+            "sourceColumn": "OrderPriority_ID",
+            "sourceLineageTag": "OrderPriority_ID",
+            "sourceProviderType": "bigint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Order_Priority",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c393cd94-0361-4e08-8ab2-19063ed39a73",
+            "sourceColumn": "Order_Priority",
+            "sourceLineageTag": "Order_Priority",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "92238031-4b89-4cff-9e03-d2caf3bd6757",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "fe2de729-faea-4685-9aed-8ceca93ec0f4",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "406607ec-6858-4a25-9d46-88d1d5a854cd",
+        "partitions": [
+          {
+            "name": "orderpriority",
+            "mode": "directLake",
+            "source": {
+              "entityName": "orderpriority",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[orderpriority]"
+      },
+      {
+        "name": "fact_sales",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Order_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0697871b-e79c-43dc-80ba-c3eac93cb6d7",
+            "sourceColumn": "Order_ID",
+            "sourceLineageTag": "Order_ID",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "67a0ad51-356f-4a4c-8abb-00b667f3f091",
+            "sourceColumn": "Price",
+            "sourceLineageTag": "Price",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Quaantity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c2ab4163-1883-4ff9-b1bb-a421b7963803",
+            "sourceColumn": "Quaantity",
+            "sourceLineageTag": "Quaantity",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2380bbb4-49aa-45c0-96c0-a5a2fa98fd9f",
+            "sourceColumn": "Sales",
+            "sourceLineageTag": "Sales",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Discount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a1de5b54-dfbe-4c03-9e19-475e569f5768",
+            "sourceColumn": "Discount",
+            "sourceLineageTag": "Discount",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Profit",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e2c5afff-ee2c-4f7e-a70e-83bc00f1cdc6",
+            "sourceColumn": "Profit",
+            "sourceLineageTag": "Profit",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Shipping_Cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "007c93b9-ba2f-4659-bce6-247dabb7798f",
+            "sourceColumn": "Shipping_Cost",
+            "sourceLineageTag": "Shipping_Cost",
+            "sourceProviderType": "real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Order_Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "8ddb645e-6b7d-4543-8e5e-9abd168a6913",
+            "sourceColumn": "Order_Date",
+            "sourceLineageTag": "Order_Date",
+            "sourceProviderType": "date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Shipping_Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "fd30812c-cf17-4fd8-863a-d64ad6251a2f",
+            "sourceColumn": "Shipping_Date",
+            "sourceLineageTag": "Shipping_Date",
+            "sourceProviderType": "date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ecca64a8-1ec0-4bf9-9537-2a3f2c0377e4",
+            "sourceColumn": "Product_ID",
+            "sourceLineageTag": "Product_ID",
+            "sourceProviderType": "bigint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OrderPriority_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fb88ec4c-1b25-42b8-ac73-b2804fc244cb",
+            "sourceColumn": "OrderPriority_ID",
+            "sourceLineageTag": "OrderPriority_ID",
+            "sourceProviderType": "bigint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ShipMode_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1710bcb2-c6bc-4c44-bf29-32078b1e3f8f",
+            "sourceColumn": "ShipMode_ID",
+            "sourceLineageTag": "ShipMode_ID",
+            "sourceProviderType": "bigint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Customer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8ae4563d-aa8b-474e-8133-ca4a9381ae78",
+            "sourceColumn": "Customer_ID",
+            "sourceLineageTag": "Customer_ID",
+            "sourceProviderType": "varchar(8000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Order_Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "27476ba3-5edb-4f66-a46d-ea00b988d071",
+            "sourceColumn": "Order_Year",
+            "sourceLineageTag": "Order_Year",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Order_Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b433faf7-a01c-4287-ba97-2e509bfd17cf",
+            "sourceColumn": "Order_Month",
+            "sourceLineageTag": "Order_Month",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Created_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "15b378e7-7ff3-494f-9802-9d552e5bffcf",
+            "sourceColumn": "Created_TS",
+            "sourceLineageTag": "Created_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified_TS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "04a2b276-5e02-4fac-b425-84dccaacd411",
+            "sourceColumn": "Modified_TS",
+            "sourceLineageTag": "Modified_TS",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "4c50da7f-9f69-4ed7-ab6e-301aaf336c52",
+        "partitions": [
+          {
+            "name": "fact_sales",
+            "mode": "directLake",
+            "source": {
+              "entityName": "fact_sales",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo",
+              "type": "entity"
+            }
+          }
+        ],
+        "sourceLineageTag": "[dbo].[fact_sales]"
+      }
+    ]
+  }
+}
