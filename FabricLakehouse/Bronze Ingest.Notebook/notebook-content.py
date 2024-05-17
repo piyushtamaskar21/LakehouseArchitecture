@@ -119,10 +119,6 @@ final_df.createOrReplaceTempView("BronzeSales")
 
 # CELL ********************
 
-final_df.columns
-
-# CELL ********************
-
 # MAGIC %%sql
 # MAGIC MERGE INTO Bronze_Layer.Sales as bs 
 # MAGIC using BronzeSales as vs 
