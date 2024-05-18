@@ -18,7 +18,8 @@ The Medallion Architecture is a layered approach to data organization that enhan
 
 ## Architecture Diagram
 
-[Insert Architecture Diagram Here (Either embed an image or link to a visual representation)]
+![image](https://github.com/piyushtamaskar21/LakehouseArchitecture/assets/51275915/2ae9ebe1-0f1d-47ac-847c-12a60e907d7f)
+
 
 ## Key Features
 
