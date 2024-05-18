@@ -32,10 +32,11 @@
             "annotations": []
           },
           "fieldList": [
-            "exists"
+            "childItems"
           ],
           "storeSettings": {
             "type": "LakehouseReadSettings",
+            "recursive": true,
             "enablePartitionDiscovery": false
           },
           "formatSettings": {
@@ -49,14 +50,14 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Get Metadata1",
+        "name": "Check if the File exists",
         "dependsOn": []
       },
       {
         "type": "IfCondition",
         "typeProperties": {
           "expression": {
-            "value": "@activity('Get Metadata1').output.exists",
+            "value": "@empty(activity('Filter if CSV is present in Current Folder').output)",
             "type": "Expression"
           },
           "ifTrueActivities": [
@@ -263,21 +264,16 @@
           ],
           "ifFalseActivities": [
             {
-              "type": "Office365Outlook",
+              "type": "SetVariable",
               "typeProperties": {
-                "inputs": {
-                  "body": {
-                    "To": "piyushtamaskar21@gmail.com",
-                    "Subject": "Source File Missing",
-                    "Body": "<p>Hello,</p>\n<p>We have noticed that @{pipeline()?.TriggerEvent?.FileName} is missing from Bronze Layer.📣</p>\n<p>Kindly ensure to put the correct file so that pipeline run its course.🙏</p>\n<p>Regards</p>\n<p><strong>Data Engineering Team</strong></p>",
-                    "Sensitivity": "",
-                    "Importance": "Normal"
-                  },
-                  "method": "post",
-                  "path": "/v2/Mail"
-                }
+                "variableName": "NoFiles",
+                "value": "No Files Found"
               },
-              "name": "Office 365 Outlook1",
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "No File Found",
               "dependsOn": []
             }
           ]
@@ -285,13 +281,40 @@
         "name": "If Condition1",
         "dependsOn": [
           {
-            "activity": "Get Metadata1",
+            "activity": "Filter if CSV is present in Current Folder",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Filter",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('Check if the File exists').output.exists",
+            "type": "Expression"
+          },
+          "condition": {
+            "value": "@endswith(item().name, '.csv')",
+            "type": "Expression"
+          }
+        },
+        "name": "Filter if CSV is present in Current Folder",
+        "dependsOn": [
+          {
+            "activity": "Check if the File exists",
             "dependencyConditions": [
               "Succeeded"
             ]
           }
         ]
       }
-    ]
+    ],
+    "variables": {
+      "NoFiles": {
+        "type": "String"
+      }
+    }
   }
 }
